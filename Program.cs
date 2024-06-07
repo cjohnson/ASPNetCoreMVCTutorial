@@ -1,4 +1,9 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using ASPNetCoreMVCTutorial.Data;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<ASPNetCoreMVCTutorialContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("ASPNetCoreMVCTutorialContext") ?? throw new InvalidOperationException("Connection string 'ASPNetCoreMVCTutorialContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
